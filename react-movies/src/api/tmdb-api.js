@@ -1,19 +1,31 @@
-export const getMovies = (args) => {
-  const [, pagePart] = args.queryKey;
-  const { page } = pagePart;
-  return fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
-  ).then((response) => {
-    if (!response.ok) {
-      return response.json().then((error) => {
-        throw new Error(error.status_message || "Something went wrong");
-      });
-    }
-    return response.json();
-  })
-  .catch((error) => {
-      throw error
-  });
+// export const getMovies = (args) => {
+//   const [, pagePart] = args.queryKey;
+//   const { page } = pagePart;
+//   return fetch(
+//     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
+//   ).then((response) => {
+//     if (!response.ok) {
+//       return response.json().then((error) => {
+//         throw new Error(error.status_message || "Something went wrong");
+//       });
+//     }
+//     return response.json();
+//   })
+//   .catch((error) => {
+//       throw error
+//   });
+// };
+
+export const getMovies = async () => {
+  const response = await fetch(
+    'http://localhost:8080/api/movies'
+    // , {
+  //   headers: {
+  //     'Authorization': "BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ldyIsImlhdCI6MTczNDgxNDU3M30.4Sa4ltxvE2LgciOdvyktkhxUVa20ww9cM82BtJd4A8M"//window.localStorage.getItem('token')
+  //   }
+  // }
+)
+  return response.json();
 };
 
   
@@ -243,4 +255,26 @@ export const getTranslations = ({ queryKey }) => {
   .catch((error) => {
     throw error
   });
+};
+
+export const login = async (username, password) => {
+  const response = await fetch('http://localhost:8080/api/users', {
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify({ username: username, password: password })
+  });
+  return response.json();
+};
+
+export const signup = async (username, password) => {
+  const response = await fetch('http://localhost:8080/api/users?action=register', {
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify({ username: username, password: password })
+  });
+  return response.json();
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -19,10 +19,12 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import PeopleIcon from '@mui/icons-material/People';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { AuthContext } from "../../contexts/authContext";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = ({ history }) => {
+  const context = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const [value, setValue] = React.useState(0);
   const open = Boolean(anchorEl);
@@ -61,9 +63,17 @@ const SiteHeader = ({ history }) => {
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
             TMDB Client
           </Typography>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            All you ever wanted to know about Movies!
-          </Typography>
+          {context.isAuthenticated ? (
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Welcome {context.userName}!
+              <button onClick={() => context.signout()}>Sign out</button>
+            </Typography>
+          ) : (
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              You are not logged in{" "}
+              <button onClick={() => navigate('/login')}>Login</button>
+            </Typography>
+          )}
             {isMobile ? (
               <>
                 <IconButton

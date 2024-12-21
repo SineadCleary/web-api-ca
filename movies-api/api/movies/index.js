@@ -61,7 +61,7 @@ router.get('/:id/genres', asyncHandler(async (req, res) => {
     if (movie) {
         res.status(200).json(movie);
     } else {
-        res.status(404).json({message: 'The movie you requested could not be found.', status_code: 404});
+        res.status(404).json({message: 'The movie you requested could not be found2', status_code: 404});
     }
 }));
 

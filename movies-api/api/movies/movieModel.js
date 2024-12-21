@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { getGenres } from '../tmdb-api';
 
 const Schema = mongoose.Schema;
 
@@ -35,11 +36,19 @@ MovieSchema.statics.findByMovieDBId = function (id) {
   return this.findOne({ id: id });
 };
 
-MovieSchema.statics.findMovieGenres = function (id) {
-  return this.findOne({ id: id }).then((movie) => {
-    return movie.genre_ids;
+MovieSchema.statics.findMovieGenres = async function (id) {
+  const movie = await this.findOne({ id: id });
+  const allGenres = await getGenres();
+  const genresArray = allGenres.genres;
+
+  return movie.genre_ids.map((genreId) => {
+    const genre = genresArray.find((genre) => genre.id === genreId);
+    return genre;
   });
-}
+};
+
+
+
 
 export default mongoose.model('Movies', MovieSchema);
 

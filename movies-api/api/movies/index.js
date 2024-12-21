@@ -4,7 +4,7 @@ import express from 'express';
 import {
     getUpcomingMovies,
     getGenres,
-    getWatchProviders,
+    getProductionCountries,
     getTranslations
   } from '../tmdb-api';  
 
@@ -37,10 +37,10 @@ router.get('/tmdb/genres', asyncHandler(async (req, res) => {
     res.status(200).json(genres);
 }));
 
-// Get watch providers
-router.get('/tmdb/providers', asyncHandler(async (req, res) => {
-    const providers = await getWatchProviders();
-    res.status(200).json(providers);
+// Get production countries
+router.get('/tmdb/countries', asyncHandler(async (req, res) => {
+    const countries = await getProductionCountries();
+    res.status(200).json(countries);
 }));
 
 // Get movie details

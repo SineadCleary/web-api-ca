@@ -36,7 +36,9 @@ MovieSchema.statics.findByMovieDBId = function (id) {
 };
 
 MovieSchema.statics.findMovieGenres = function (id) {
-  return this.findOne({ id:id });
+  return this.findOne({ id: id }).then((movie) => {
+    return movie.genre_ids;
+  });
 }
 
 export default mongoose.model('Movies', MovieSchema);

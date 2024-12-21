@@ -32,7 +32,7 @@ export const getGenres = async () => {
     }
 };
 
-export const getWatchProviders = async () => {
+export const getProductionCountries = async () => {
     try {
         const response = await fetch(
             `https://api.themoviedb.org/3/configuration/countries?api_key=${process.env.TMDB_KEY}&language=en-US`

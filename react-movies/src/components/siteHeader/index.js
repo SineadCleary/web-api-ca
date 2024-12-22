@@ -71,7 +71,7 @@ const SiteHeader = ({ history }) => {
           ) : (
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               You are not logged in{" "}
-              <button onClick={() => navigate('/login')}>Login</button>
+              <Button variant="contained" onClick={() => navigate('/login')}>Login</Button>
             </Typography>
           )}
             {isMobile ? (

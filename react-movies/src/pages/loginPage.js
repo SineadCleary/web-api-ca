@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from '../contexts/authContext';
 import { Link } from "react-router-dom";
+import Header from "../components/headerMovieList";
+import { Typography, TextField, Button, Paper } from "@mui/material";
 
 const LoginPage = props => {
     const context = useContext(AuthContext);
@@ -24,18 +26,29 @@ const LoginPage = props => {
 
     return (
         <>
-            <h2>Login page</h2>
-            <p>You must log in to view the protected pages </p>
-            <input id="username" placeholder="user name" onChange={e => {
+            <Header title="Login"/>
+            <Paper 
+                  component="div" 
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginBottom: 1,
+                  }}
+                  >
+                    {/* <div> */}
+            <Typography>You must log in to view the protected pages </Typography>
+            <TextField variant="outlined" id="username" placeholder="user name" onChange={e => {
                 setUserName(e.target.value);
-            }}></input><br />
-            <input id="password" type="password" placeholder="password" onChange={e => {
+            }} /><br />
+            <TextField variant="outlined" id="password" type="password" placeholder="password" onChange={e => {
                 setPassword(e.target.value);
-            }}></input><br />
-            {/* Login web form  */}
-            <button onClick={login}>Log in</button>
-            <p>Not Registered?
-                <Link to="/signup">Sign Up!</Link></p>
+            }} /><br />
+            <Button variant="contained" onClick={login}>Log in</Button>
+            <Typography>Not Registered?
+                <Link to="/signup">Sign Up!</Link></Typography> 
+            </Paper>
         </>
     );
 };

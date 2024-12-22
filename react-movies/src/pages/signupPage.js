@@ -1,43 +1,58 @@
 import React, { useContext, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { AuthContext } from '../contexts/authContext';
+import { Typography, TextField, Button, Paper } from "@mui/material";
+import Header from "../components/headerMovieList";
 import { Link } from "react-router-dom";
 
-const LoginPage = props => {
-    const context = useContext(AuthContext);
+const SignUpPage = props => {
+  const context = useContext(AuthContext)
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const [registered, setRegistered] = useState(false);
 
-    const [userName, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+  const register = () => {
+    let passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const validPassword = passwordRegEx.test(password);
 
-    const login = () => {
-        context.authenticate(userName, password);
-    };
-
-    let location = useLocation();
-
-    // Set 'from' to path where browser is redirected after a successful login - either / or the protected path user requested
-    const { from } = location.state ? { from: location.state.from.pathname } : { from: "/" };
-
-    if (context.isAuthenticated === true) {
-        return <Navigate to={from} />;
+    if (validPassword && password === passwordAgain) {
+      context.register(userName, password);
+      setRegistered(true);
     }
+  }
 
-    return (
-        <>
-            <h2>Signup page</h2>
-            <p>You must log in to view the protected pages </p>
-            <input id="username" placeholder="user name" onChange={e => {
-                setUserName(e.target.value);
-            }}></input><br />
-            <input id="password" type="password" placeholder="password" onChange={e => {
-                setPassword(e.target.value);
-            }}></input><br />
-            {/* Login web form  */}
-            <button onClick={login}>Log in</button>
-            <p>Not Registered?
-                <Link to="/signup">Sign Up!</Link></p>
-        </>
-    );
+  if (registered === true) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <>
+    <Header title="Sign up"/>
+    <Paper 
+        component="div" 
+        sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            marginBottom: 1,
+        }}
+        >
+        <Typography>You must register a username and password to log in</Typography>
+        <TextField variant="outlined" value={userName} placeholder="user name" onChange={e => {
+            setUserName(e.target.value);
+        }}></TextField><br />
+        <TextField variant="outlined" value={password} type="password" placeholder="password" onChange={e => {
+        setPassword(e.target.value);
+        }}></TextField><br />
+        <TextField variant="outlined" value={passwordAgain} type="password" placeholder="password again" onChange={e => {
+        setPasswordAgain(e.target.value);
+        }}></TextField><br />
+        <Button onClick={register} variant="contained">Register</Button>
+    </Paper>
+    </>
+  );
 };
 
-export default LoginPage;
+export default SignUpPage;

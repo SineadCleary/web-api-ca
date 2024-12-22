@@ -7,7 +7,7 @@ import Pagination from '@mui/material/Pagination';
 import { Typography } from "@mui/material";
 import Paper from '@mui/material/Paper';
 import { useQuery } from "react-query";
-import { getMovies } from "../../api/tmdb-api";
+import { getMovies } from "../../api/movies-api";
 import Spinner from "../spinner";
 
 function MovieListPageTemplate({ movies, title, action }) {

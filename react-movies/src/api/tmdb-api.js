@@ -1,34 +1,3 @@
-// export const getMovies = (args) => {
-//   const [, pagePart] = args.queryKey;
-//   const { page } = pagePart;
-//   return fetch(
-//     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
-//   ).then((response) => {
-//     if (!response.ok) {
-//       return response.json().then((error) => {
-//         throw new Error(error.status_message || "Something went wrong");
-//       });
-//     }
-//     return response.json();
-//   })
-//   .catch((error) => {
-//       throw error
-//   });
-// };
-
-export const getMovies = async () => {
-  const response = await fetch(
-    'http://localhost:8080/api/movies'
-    // , {
-  //   headers: {
-  //     'Authorization': "BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ldyIsImlhdCI6MTczNDgxNDU3M30.4Sa4ltxvE2LgciOdvyktkhxUVa20ww9cM82BtJd4A8M"//window.localStorage.getItem('token')
-  //   }
-  // }
-)
-  return response.json();
-};
-
-  
 export const getMovie = (args) => {
   // console.log(args)
   const [, idPart] = args.queryKey;
@@ -172,22 +141,22 @@ export const getMovieReviews = ({ queryKey }) => {
   });
 };
 
-export const getUpcoming = (args) => {
-  // console.log(args)
-  return fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-  ).then((response) => {
-    if (!response.ok) {
-      return response.json().then((error) => {
-        throw new Error(error.status_message || "Something went wrong");
-      });
-    }
-    return response.json();
-  })
-  .catch((error) => {
-    throw error
-  });
-};
+// export const getUpcoming = (args) => {
+//   // console.log(args)
+//   return fetch(
+//     `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+//   ).then((response) => {
+//     if (!response.ok) {
+//       return response.json().then((error) => {
+//         throw new Error(error.status_message || "Something went wrong");
+//       });
+//     }
+//     return response.json();
+//   })
+//   .catch((error) => {
+//     throw error
+//   });
+// };
 
 export const getTopRated = (args) => {
   return fetch(

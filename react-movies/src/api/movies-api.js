@@ -10,6 +10,15 @@ export const getMovies = async () => {
   return response.json();
 };
 
+export const getMovie = async (args) => {
+  const [, idPart ] = args.queryKey;
+  const { id } = idPart;
+  const response = await fetch(
+    `http://localhost:8080/api/movies/${id}`
+)
+  return response.json();
+};
+
 export const getUpcoming = async () => {
   const response = await fetch(
     'http://localhost:8080/api/movies/tmdb/upcoming'

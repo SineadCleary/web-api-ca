@@ -1,22 +1,3 @@
-export const getMovie = (args) => {
-  // console.log(args)
-  const [, idPart] = args.queryKey;
-  const { id } = idPart;
-  return fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
-  ).then((response) => {
-    if (!response.ok) {
-      return response.json().then((error) => {
-        throw new Error(error.status_message || "Something went wrong");
-      });
-    }
-    return response.json();
-  })
-  .catch((error) => {
-    throw error
- });
-};
-
 export const getMovieTranslated = (args) => {
   const [, idPart, language] = args.queryKey;
   const { id } = idPart;
@@ -141,23 +122,6 @@ export const getMovieReviews = ({ queryKey }) => {
   });
 };
 
-// export const getUpcoming = (args) => {
-//   // console.log(args)
-//   return fetch(
-//     `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-//   ).then((response) => {
-//     if (!response.ok) {
-//       return response.json().then((error) => {
-//         throw new Error(error.status_message || "Something went wrong");
-//       });
-//     }
-//     return response.json();
-//   })
-//   .catch((error) => {
-//     throw error
-//   });
-// };
-
 export const getTopRated = (args) => {
   return fetch(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
@@ -224,26 +188,4 @@ export const getTranslations = ({ queryKey }) => {
   .catch((error) => {
     throw error
   });
-};
-
-export const login = async (username, password) => {
-  const response = await fetch('http://localhost:8080/api/users', {
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      method: 'post',
-      body: JSON.stringify({ username: username, password: password })
-  });
-  return response.json();
-};
-
-export const signup = async (username, password) => {
-  const response = await fetch('http://localhost:8080/api/users?action=register', {
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      method: 'post',
-      body: JSON.stringify({ username: username, password: password })
-  });
-  return response.json();
 };

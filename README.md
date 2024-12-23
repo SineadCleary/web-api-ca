@@ -12,17 +12,17 @@ Name: Sinéad Cleary
 ## API Configuration
 Create a .env in movies-api with the following:
 ______________________
-NODE_ENV=development
-PORT=8080
-HOST=localhost
-MONGO_DB=<YourMongoURL>
-TMDB_KEY=<YourTMDBKey>
-SECRET=<YourJWTSecret>
+NODE_ENV=development<br/>
+PORT=8080<br/>
+HOST=localhost<br/>
+MONGO_DB=YourMongoURL<br/>
+TMDB_KEY=YourTMDBKey<br/>
+SECRET=YourJWTSecret
 ______________________
 
 Create a .env in react-movies with the following:
 ______________________
-REACT_APP_TMDB_KEY=<YourTMDBKey>
+REACT_APP_TMDB_KEY=YourTMDBKey<br/>
 FAST_REFRESH=false
 ______________________
 

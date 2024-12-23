@@ -28,11 +28,13 @@ ______________________
 
 ## API Design
 - /api/movies | GET | Gets a list of movies 
-- /api/movies/{movieid} | GET | Gets a single movie 
+- /api/movies/{movieid} | GET | Gets a single movie
+- /api/movies/tmdb/countries | GET | Gets a list of countries used by TMDB
 - /api/movies/tmdb/upcoming | GET | Gets a list of upcoming movies
 - /api/movies/tmdb/toprated | GET | Gets a list of top rated movies
 - /api/movies/tmdb/popular | GET | Gets a list of popular movies
 - /api/movies/tmdb/genres | GET | Gets a list of TMDB genres and associated IDs
+- /api/movies/{movieid}/genres | GET | Gets genres for a single movie
 - /api/users | GET | Gets a list of registered users
 - /api/users?action=register | POST | registers a user
 

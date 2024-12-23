@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import MoviePage from "./pages/movieDetailsPage";
@@ -37,15 +37,15 @@ const App = () => {
         <SiteHeader />
         <MoviesContextProvider>
           <Routes>
-            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
-            <Route path="/movies/watchlist" element={<WatchlistPage />} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/upcoming" element={<UpcomingPage />} />
+              <Route path="/topRated" element={<TopRatedPage />} />
+              <Route path="/popular" element={<PopularPage />} />
+              <Route path="/movies/:id" element={<MoviePage />} />
             </Route>
-            <Route path="/topRated" element={<TopRatedPage />} />
-            <Route path="/popular" element={<PopularPage />} />
+            <Route path="/movies/favorites" element={<FavoriteMoviesPage />} />
+            <Route path="/movies/watchlist" element={<WatchlistPage />} />
             <Route path="/reviews/:id" element={ <MovieReviewPage /> } />
-            <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/movies/:id/:transid" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />

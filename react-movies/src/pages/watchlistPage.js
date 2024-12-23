@@ -26,11 +26,9 @@ const WatchlistPage = () => {
   }
 
   const movies = watchlistQueries.map((q) => {
-    q.data.genre_ids = q.data.genres.map(g => g.id)
+    q.data.genre_ids = q.data.genre_ids.map(g => g.id)
     return q.data
   });
-
-  const toDo = () => true;
 
   return (
     <PageTemplate

@@ -5,7 +5,9 @@ import {
     getUpcomingMovies,
     getGenres,
     getProductionCountries,
-    getTranslations
+    getTranslations,
+    getTopRated,
+    getPopular
   } from '../tmdb-api';  
 import authenticate from '../../authenticate';
 
@@ -66,9 +68,22 @@ router.get('/:id/genres', asyncHandler(async (req, res) => {
     }
 }));
 
+// Get Upcoming
 router.get('/tmdb/upcoming', asyncHandler(async (req, res) => {
     const upcomingMovies = await getUpcomingMovies();
     res.status(200).json(upcomingMovies);
+}));
+
+// Get Popular
+router.get('/tmdb/popular', asyncHandler(async (req, res) => {
+    const popularMovies = await getPopular();
+    res.status(200).json(popularMovies);
+}));
+
+// Get Top Rated
+router.get('/tmdb/toprated', asyncHandler(async (req, res) => {
+    const topMovies = await getTopRated();
+    res.status(200).json(topMovies);
 }));
 
 export default router;

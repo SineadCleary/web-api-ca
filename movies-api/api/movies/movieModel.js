@@ -47,9 +47,6 @@ MovieSchema.statics.findMovieGenres = async function (id) {
   });
 };
 
-
-
-
 export default mongoose.model('Movies', MovieSchema);
 
 

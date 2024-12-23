@@ -65,8 +65,8 @@ const SiteHeader = ({ history }) => {
           </Typography>
           {context.isAuthenticated ? (
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              Welcome {context.userName}!
-              <button onClick={() => context.signout()}>Sign out</button>
+              Welcome {context.userName}! 
+              <Button variant="contained" onClick={() => context.signout()}>Sign out</Button>
             </Typography>
           ) : (
             <Typography variant="h6" sx={{ flexGrow: 1 }}>

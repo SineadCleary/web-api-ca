@@ -7,6 +7,7 @@ import {
     getProductionCountries,
     getTranslations
   } from '../tmdb-api';  
+import authenticate from '../../authenticate';
 
 const router = express.Router();
 

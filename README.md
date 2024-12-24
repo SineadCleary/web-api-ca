@@ -9,6 +9,11 @@ Name: Sinéad Cleary
  + Simple sign up and login included in app. Buttons in site header.
  + Authentication required for protected routes.
 
+## Setup requirements.
+- in root - mongod
+- in movies-api - npm run dev
+- in react-movies - npm start
+
 ## API Configuration
 Create a .env in movies-api with the following:
 ______________________
